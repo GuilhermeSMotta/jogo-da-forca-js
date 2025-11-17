@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Forca</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Jogo da Forca</h1>
+
+        <pre id="boneco" class="boneco"></pre>
+
+        <div id="palavraForca" class="palavra"></div>
+
+        <div class="input-area">
+            <input type="text" id="letra" maxlength="1" placeholder="Digite uma letra">
+            <button id="botao">Confirmar</button>
+            <button id="reiniciar" class="btn-reset">Reiniciar</button>
+        </div>
+
+        <div id="usadas" class="usadas"></div>
+        <div id="mensagem" class="mensagem"></div>
+    </div>
+
+    <script src="jogo-da-forca.js"></script>
+
+</body>
+</html>
