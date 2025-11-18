@@ -3,7 +3,7 @@ function randomInt(min = 0, max = 10000) {
 }
 
 const palavras = [
-    "casa", "carro", "mamae", "papai", "teto", "porta", "chave", "mesa", "pente",
+    "casa", "carro", "mae", "pai", "teto", "porta", "chave", "mesa", "pente",
     "livro", "sala", "cozinha", "banana", "uva", "mel", "sapo", "gato", "cachorro",
     "peixe", "vaca", "boi", "galinha", "porco", "lobo", "tigre", "leao", "zebra",
     "foca", "urso", "cobra", "abelha", "aranha", "touro", "pato", "rato",
@@ -14,7 +14,7 @@ const palavras = [
     "radio", "filme", "foto", "piano", "violao", "bateria", "som", "fone", "cabo",
     "nuvem", "vento", "chuva", "pedra", "areia", "terra", "fogo", "ar", "luz",
     "carne", "pao", "bolo", "agua", "suco", "cafe", "leite",
-    "primo", "prima", "tio", "tia", "avo", "avoo", "irmao", "irma",
+    "primo", "prima", "tio", "tia", "avo", "irmao", "irma",
     "amigo", "amiga", "colega", "chefe",
     "verde", "vermelho", "azul", "amarelo", "branco", "preto", "cinza", "rosa",
     "noite", "dia", "mes", "ano", "tempo", "hora",
@@ -103,7 +103,7 @@ function adicionar() {
         mensagem.textContent = 'Você perdeu! A palavra era: ' + palavra;
         return;
     }
-    
+
     letraH.value = '';
     letraH.focus();
 }
