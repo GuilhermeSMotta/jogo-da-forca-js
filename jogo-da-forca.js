@@ -60,49 +60,50 @@ function adicionar() {
     let letra = letraH.value.trim().toLowerCase();
     if (letra === "") return;
 
-    if (tentativa >= tentativasMax) {
-        mensagem.textContent = 'Você perdeu! A palavra era: ' + palavra;
-        return;
-    }
-
+    
     if (letrasUsadas.includes(letra)) {
         mensagem.textContent = 'Letra já usada.';
         return;
     }
-
+    
     if (letra.length !== 1) {
         mensagem.textContent = 'Digite apenas uma letra.';
         return;
     }
-
+    
     letrasUsadas.push(letra);
-
+    
     letrasUsadasH.textContent = letrasUsadas.join(', ');
-
+    
     if (palavra.includes(letra)) {
         mensagem.textContent = 'Letra correta!';
-
+        
         let palavraSeparada = palavraForca.split('');
-
+        
         for (let i = 0; i < palavra.length; i++) {
             if (palavra[i] === letra) {
                 palavraSeparada[i] = letra;
             }
         }
-
+        
         palavraForca = palavraSeparada.join('');
         palavraForcaH.textContent = palavraForca;
-
+        
         if (palavraForca === palavra) {
             mensagem.textContent = 'Parabéns! Você venceu!';
         }
-
+        
     } else {
         tentativa++;
         mensagem.textContent = 'Letra incorreta!';
         bonecoH.textContent = estadoBoneco[tentativa];
     }
-
+    
+    if (tentativa >= tentativasMax) {
+        mensagem.textContent = 'Você perdeu! A palavra era: ' + palavra;
+        return;
+    }
+    
     letraH.value = '';
     letraH.focus();
 }
