@@ -55,57 +55,71 @@ const botaoH = document.getElementById('botao');
 bonecoH.textContent = estadoBoneco[tentativa];
 palavraForcaH.textContent = palavraForca;
 
+function atualizarPalavra(letra, palavra, palavraForcaAtual) {
+    let novaPalavra = palavraForcaAtual.split('');
+
+    for (let i = 0; i < palavra.length; i++) {
+        if (palavra[i] === letra) {
+            novaPalavra[i] = letra;
+        }
+    }
+
+    return novaPalavra.join('');
+}
+
 function adicionar() {
+    try {
 
-    let letra = letraH.value.trim().toLowerCase();
-    if (letra === "") return;
+        let letra = letraH.value.trim().toLowerCase();
+        if (letra === "") return;
 
-    
-    if (letrasUsadas.includes(letra)) {
-        mensagem.textContent = 'Letra já usada.';
-        return;
-    }
-    
-    if (letra.length !== 1) {
-        mensagem.textContent = 'Digite apenas uma letra.';
-        return;
-    }
-    
-    letrasUsadas.push(letra);
-    
-    letrasUsadasH.textContent = letrasUsadas.join(', ');
-    
-    if (palavra.includes(letra)) {
-        mensagem.textContent = 'Letra correta!';
-        
-        let palavraSeparada = palavraForca.split('');
-        
-        for (let i = 0; i < palavra.length; i++) {
-            if (palavra[i] === letra) {
-                palavraSeparada[i] = letra;
+        if (letrasUsadas.includes(letra)) {
+            mensagem.textContent = 'Letra já usada.';
+            return;
+        }
+
+        if (letra.length !== 1) {
+            mensagem.textContent = 'Digite apenas uma letra.';
+            return;
+        }
+
+        letrasUsadas.push(letra);
+        letrasUsadasH.textContent = letrasUsadas.join(', ');
+
+        if (tentativa >= tentativasMax) {
+            mensagem.textContent = 'Você perdeu! A palavra era: ' + palavra;
+            return;
+        }
+
+        if (palavra.includes(letra)) {
+
+            mensagem.textContent = 'Letra correta!';
+
+            palavraForca = atualizarPalavra(letra, palavra, palavraForca);
+            palavraForcaH.textContent = palavraForca;
+
+            if (palavraForca === palavra) {
+                mensagem.textContent = 'Parabéns! Você venceu!';
             }
-        }
-        
-        palavraForca = palavraSeparada.join('');
-        palavraForcaH.textContent = palavraForca;
-        
-        if (palavraForca === palavra) {
-            mensagem.textContent = 'Parabéns! Você venceu!';
-        }
-        
-    } else {
-        tentativa++;
-        mensagem.textContent = 'Letra incorreta!';
-        bonecoH.textContent = estadoBoneco[tentativa];
-    }
-    
-    if (tentativa >= tentativasMax) {
-        mensagem.textContent = 'Você perdeu! A palavra era: ' + palavra;
-        return;
-    }
 
-    letraH.value = '';
-    letraH.focus();
+        } else {
+            tentativa++;
+            mensagem.textContent = 'Letra incorreta!';
+            bonecoH.textContent = estadoBoneco[tentativa];
+        }
+
+        if (tentativa >= tentativasMax) {
+            mensagem.textContent = 'Você perdeu! A palavra era: ' + palavra;
+        }
+
+        letraH.value = '';
+        letraH.focus();
+
+    } catch (erro) {
+        console.error("Erro detectado:", erro);
+
+        mensagem.textContent = 'Ocorreu um erro inesperado! Tente reiniciar o jogo.';
+    }
 }
 
 botaoH.addEventListener("click", adicionar);
